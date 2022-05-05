@@ -25,8 +25,6 @@ jobs:
         run: |
           cd server
           npm install
-          npm run build --if-present
-          npm run test --if-present
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
@@ -54,4 +52,4 @@ jobs:
           app-name: "AssetTrackerAppAPI"
           slot-name: "Production"
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BFF724144B9E41429EE42E5399C4C68A }}
-          package: .
+          package: ./server
