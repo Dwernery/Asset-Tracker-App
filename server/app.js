@@ -8,7 +8,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.get('/', function (req, res, next) {
-  res.status(200).send('Works!');
+  res.status(200).json({
+    message: 'success',
+    data: 'test api data'
+  })
 });
 
 module.exports = app;
