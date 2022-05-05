@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 
 const App = () => {
     return (
-        <h1>React Rendered and only built from Client path</h1>
+        <h1>React Rendered and only built from Client path!!</h1>
     )
 }
 
