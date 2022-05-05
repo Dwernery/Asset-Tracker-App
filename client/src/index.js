@@ -7,10 +7,22 @@ const apiReq = async function () {
     return res.data
 }
 
-const App = () => {
-    return (
-        <h1>{apiReq()}</h1>
-    )
+class App extends React.Component {
+    constructor() {
+        super()
+        this.state = { response: '' }
+        this.getData()
+    }
+    async getData() {
+        const res = await apiReq()
+        this.setState({ response: res.data })
+    }
+
+    render() {
+        return (
+            <h1>{this.state.response}</h1>
+        )
+    }
 }
 
 ReactDOM.render(<App />, document.getElementById('root'))
