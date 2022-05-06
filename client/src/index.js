@@ -2,25 +2,24 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
 
-const apiReq = async function () {
-    let res = await axios.get('https://assettrackerappapi.azurewebsites.net/')
-    return res.data
-}
-
 class App extends React.Component {
     constructor() {
         super()
-        this.state = { response: '' }
+        this.state = { name: '', type: '', values: [] }
         this.getData()
     }
     async getData() {
-        const res = await apiReq()
-        this.setState({ response: res.data })
+        let res = await axios.get('https://assettrackerappapi.azurewebsites.net/')
+        this.setState({ name: res.data.data.name, type: res.data.data.type })
+        console.log(res.data)
     }
 
     render() {
         return (
-            <h1>{this.state.response}</h1>
+            <div>
+                <h1>{this.state.name}</h1>
+                <h2>{this.state.type}</h2>
+            </div>
         )
     }
 }
