@@ -1,12 +1,10 @@
 var express = require('express');
 var logger = require('morgan');
 const mongoose = require('mongoose')
-const dotenv = require('dotenv')
-dotenv.config({ path: './config.env' })
 const Asset = require('./models/assetModel.js')
 
 const DBConnection = async () => {
-  const connection = await mongoose.connect(process.env.DB_CONNECTION_STRING, {
+  const connection = await mongoose.connect("mongodb://assettrackerappdb:Io670STskFkM1FqypzUPoLNKpEhT27qw8nH7Tg6BNwLvufzK3uUsdQMaLuu5S2KlAbjuSoiK8QCW7j6rQMTgYA==@assettrackerappdb.mongo.cosmos.azure.com:10255/asset-tracker?ssl=true&retrywrites=false&maxIdleTimeMS=120000&appName=@assettrackerappdb@", {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false
