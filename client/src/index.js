@@ -5,20 +5,19 @@ import axios from 'axios'
 class App extends React.Component {
     constructor() {
         super()
-        this.state = { name: '', type: '', values: [] }
+        this.state = { message: '' }
         this.getData()
     }
     async getData() {
         let res = await axios.get('https://assettrackerappapi.azurewebsites.net/')
-        this.setState({ name: res.data.data.name, type: res.data.data.type })
+        this.setState({ message: res.data.message })
         console.log(res.data)
     }
 
     render() {
         return (
             <div>
-                <h1>{this.state.name}</h1>
-                <h2>{this.state.type}</h2>
+                <h1>{this.state.message}</h1>
             </div>
         )
     }
