@@ -7,7 +7,7 @@ dotenv.config({ path: './config.env' })
 
 
 const DBConnection = async () => {
-  const connection = await mongoose.connect(process.env.DB_CONNECTION_STRING, {
+  await mongoose.connect(process.env.DB_CONNECTION_STRING, {
     useNewUrlParser: true
   })
   console.log('Connected to Database')
@@ -20,15 +20,33 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.get('/', async function (req, res, next) {
-  let asset = await Asset.findById('62758168d6e19c107417606c')
-
+app.get('/', function (req, res, next) {
   res.status(200).json({
-    message: 'success',
-    data: asset
+    message: 'Home Page',
   })
 });
 
+app.get('/asset/:id', async function (req, res, next) {
+  let asset = await Asset.findById(req.params.id)
+  res.status(200).json({
+    message: 'Success',
+    result: asset
+  })
+});
+
+app.post('/asset', async function (req, res, next) {
+  let newAsset = await Asset.create({
+    name: req.body.name,
+    type: req.body.type,
+    values: req.body.values
+  })
+  res.status(200).json({
+    message: 'Success',
+    result: newAsset
+  })
+})
+
+//Will need the UPDATE asset route//
 
 
 module.exports = app;
