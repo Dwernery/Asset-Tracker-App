@@ -9,6 +9,7 @@ const assetSchema = new mongoose.Schema({
     },
     values: [
         {
+            _id: false,
             amount: Number,
             month: String,
             year: String
